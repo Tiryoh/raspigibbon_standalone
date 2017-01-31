@@ -9,7 +9,7 @@ GIBBON_LED_NUM=0
 
 inc()
 {
-	[[ $GIBBON_LED_NUM -eq 15 ]] && GIBBON_LED_NUM=0 || GIBBON_LED_NUM=$(echo "$GIBBON_LED_NUM + 1" | bc)
+	[[ $GIBBON_LED_NUM -eq 15 ]] && GIBBON_LED_NUM=0 || GIBBON_LED_NUM=$(($GIBBON_LED_NUM + 1))
 	for i in `seq 0 3`; do
 		printf "%04d\n" $(echo "obase=2;ibase=10;$GIBBON_LED_NUM" | bc) | rev | cut -c $(echo "$i+1" | bc) > /dev/rtled$i
 	done
@@ -17,9 +17,9 @@ inc()
 
 dec()
 {
-	[[ $GIBBON_LED_NUM -eq 0 ]] && GIBBON_LED_NUM=15 || GIBBON_LED_NUM=$(echo "$GIBBON_LED_NUM - 1" | bc)
+	[[ $GIBBON_LED_NUM -eq 0 ]] && GIBBON_LED_NUM=15 || GIBBON_LED_NUM=$(($GIBBON_LED_NUM - 1))
 	for i in `seq 0 3`; do
-		printf "%04d\n" $(echo "obase=2;ibase=10;$GIBBON_LED_NUM" | bc) | rev | cut -c $(echo "$i+1" | bc) > /dev/rtled$i
+		printf "%04d\n" $(echo "obase=2;ibase=10;$GIBBON_LED_NUM" | bc) | rev | cut -c $(($i+1)) > /dev/rtled$i
 	done
 }
 
@@ -29,11 +29,9 @@ flash()
 		echo 1 > /dev/rtled$i
 	done
 	sleep 0.15
+	echo 0 | tee /dev/rtled* > /dev/null
 	for i in `seq 0 3`; do
-		echo 0 > /dev/rtled$i
-	done
-	for i in `seq 0 3`; do
-		printf "%04d\n" $(echo "obase=2;ibase=10;$GIBBON_LED_NUM" | bc) | rev | cut -c $(echo "$i+1" | bc) > /dev/rtled$i
+		printf "%04d\n" $(echo "obase=2;ibase=10;$GIBBON_LED_NUM" | bc) | rev | cut -c $(($i+1)) > /dev/rtled$i
 	done
 }
 
@@ -57,9 +55,7 @@ for i in `seq 0 3`; do
 	echo 1 > /dev/rtled$i
 	sleep 0.05
 done
-for i in `seq 0 3`; do
-	echo 0 > /dev/rtled$i
-done
+echo 0 | tee /dev/rtled* > /dev/null
 
 if [[ $GIBBON -eq 1 ]]; then
 	flash
