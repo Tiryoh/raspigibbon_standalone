@@ -1,0 +1,3 @@
+[submodule "RS30X"]
+	path = RS30X
+	url = https://github.com/Tiryoh/RS30X.git
