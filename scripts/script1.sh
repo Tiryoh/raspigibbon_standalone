@@ -1,0 +1,5 @@
+$GIBBON_STANDALONE_SCR_DIR/set_all_zero.py --time 2
+$GIBBON_STANDALONE_SCR_DIR/bow.py
+sleep 1
+$GIBBON_STANDALONE_SCR_DIR/hand_rest.py
+
