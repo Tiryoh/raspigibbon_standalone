@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 [[ -z $HOME ]] && HOME=/home/ubuntu
-[[ -e /dev/rtled0 ]] || sudo insmod $HOME/raspigibbon_driver_installer/lib/4.1.19-v7+/rtled.ko && sudo chmod 666 /dev/rt*
-[[ -e /dev/rtswitch0 ]] || sudo insmod $HOME/raspigibbon_driver_installer/lib/4.1.19-v7+/rtswitch.ko && sudo chmod 666 /dev/rt*
+[[ -e /dev/rtled0 ]] || sudo insmod $HOME/raspigibbon_driver_installer/lib/$(uname -r)/rtled.ko && sudo chmod 666 /dev/rt*
+[[ -e /dev/rtswitch0 ]] || sudo insmod $HOME/raspigibbon_driver_installer/lib/$(uname -r)/rtswitch.ko && sudo chmod 666 /dev/rt*
 
 export GIBBON_STANDALONE_SCR_DIR=$HOME/raspigibbon_standalone
 GIBBON_LED_NUM=0
