@@ -20,7 +20,7 @@ if __name__ == '__main__':
         servo.setAngleInTime(i, 0, 2)
         time.sleep(0.1)
 
-    while servo.readAngle(2) > 0:
+    while servo.readAngle(2) > 2 or servo.readAngle(2) < -2:
         time.sleep(0.1)
 
     servo.setAngle(1,0)
