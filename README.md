@@ -7,7 +7,7 @@ Scripts for Raspberry Pi Gibbon to run standalone
 requires the followings to run:
 
 * Raspberry Pi Gibbon
-* [raspigibbon_driver_installer](https://github.com/raspigibbon_driver_installer)
+* [raspigibbon_driver_installer](https://github.com/Tiryoh/raspigibbon_driver_installer)
   * put it in your home directory
 
 ## Installation
